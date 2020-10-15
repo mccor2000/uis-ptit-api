@@ -22,7 +22,7 @@ import {StudentRepository} from '../repositories';
 export class StudentController {
   constructor(
     @repository(StudentRepository)
-    public studentRepository : StudentRepository,
+    public studentRepository: StudentRepository,
   ) {}
 
   @post('/students', {
@@ -57,9 +57,7 @@ export class StudentController {
       },
     },
   })
-  async count(
-    @param.where(Student) where?: Where<Student>,
-  ): Promise<Count> {
+  async count(@param.where(Student) where?: Where<Student>): Promise<Count> {
     return this.studentRepository.count(where);
   }
 
@@ -119,8 +117,9 @@ export class StudentController {
     },
   })
   async findById(
-    @param.path.object('id') id: object,
-    @param.filter(Student, {exclude: 'where'}) filter?: FilterExcludingWhere<Student>
+    @param.path.string('id') id: string,
+    @param.filter(Student, {exclude: 'where'})
+    filter?: FilterExcludingWhere<Student>,
   ): Promise<Student> {
     return this.studentRepository.findById(id, filter);
   }
@@ -133,7 +132,7 @@ export class StudentController {
     },
   })
   async updateById(
-    @param.path.object('id') id: object,
+    @param.path.string('id') id: string,
     @requestBody({
       content: {
         'application/json': {
@@ -154,7 +153,7 @@ export class StudentController {
     },
   })
   async replaceById(
-    @param.path.object('id') id: object,
+    @param.path.string('id') id: string,
     @requestBody() student: Student,
   ): Promise<void> {
     await this.studentRepository.replaceById(id, student);
@@ -167,7 +166,7 @@ export class StudentController {
       },
     },
   })
-  async deleteById(@param.path.object('id') id: object): Promise<void> {
+  async deleteById(@param.path.string('id') id: string): Promise<void> {
     await this.studentRepository.deleteById(id);
   }
 }

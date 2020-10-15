@@ -22,7 +22,7 @@ import {CreditClassRepository} from '../repositories';
 export class CreditClassController {
   constructor(
     @repository(CreditClassRepository)
-    public creditClassRepository : CreditClassRepository,
+    public creditClassRepository: CreditClassRepository,
   ) {}
 
   @post('/credit-classes', {
@@ -119,8 +119,9 @@ export class CreditClassController {
     },
   })
   async findById(
-    @param.path.object('id') id: object,
-    @param.filter(CreditClass, {exclude: 'where'}) filter?: FilterExcludingWhere<CreditClass>
+    @param.path.string('id') id: string,
+    @param.filter(CreditClass, {exclude: 'where'})
+    filter?: FilterExcludingWhere<CreditClass>,
   ): Promise<CreditClass> {
     return this.creditClassRepository.findById(id, filter);
   }
@@ -133,7 +134,7 @@ export class CreditClassController {
     },
   })
   async updateById(
-    @param.path.object('id') id: object,
+    @param.path.string('id') id: string,
     @requestBody({
       content: {
         'application/json': {
@@ -154,7 +155,7 @@ export class CreditClassController {
     },
   })
   async replaceById(
-    @param.path.object('id') id: object,
+    @param.path.string('id') id: string,
     @requestBody() creditClass: CreditClass,
   ): Promise<void> {
     await this.creditClassRepository.replaceById(id, creditClass);
@@ -167,7 +168,7 @@ export class CreditClassController {
       },
     },
   })
-  async deleteById(@param.path.object('id') id: object): Promise<void> {
+  async deleteById(@param.path.string('id') id: string): Promise<void> {
     await this.creditClassRepository.deleteById(id);
   }
 }

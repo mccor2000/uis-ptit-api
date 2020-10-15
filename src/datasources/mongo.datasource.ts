@@ -6,6 +6,8 @@ dotenv.config();
 const config = {
   name: 'mongo',
   connector: 'mongodb',
+  protocal: 'mongodb+srv',
+  connectionTimeout: 10000,
   url: process.env.MONGODB_URL,
   useNewUrlParser: true,
   useCreateIndex: true,
