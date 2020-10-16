@@ -2,7 +2,7 @@ import {Entity, model, property} from '@loopback/repository';
 
 @model({
   settings: {
-    strictObjectIDCoercion: true,
+    strictObjectIDCoercion: false,
     mongodb: {collection: 'credit_classes'},
   },
 })
@@ -10,7 +10,6 @@ export class CreditClass extends Entity {
   @property({
     type: 'string',
     id: true,
-    generated: true,
   })
   _id?: string;
 
