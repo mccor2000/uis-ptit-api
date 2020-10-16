@@ -1,6 +1,11 @@
 import {Entity, model, property} from '@loopback/repository';
 
-@model({settings: {strict: false}})
+@model({
+  settings: {
+    strictObjectIDCoercion: true,
+    mongodb: {collection: 'credit_classes'},
+  },
+})
 export class CreditClass extends Entity {
   @property({
     type: 'string',
