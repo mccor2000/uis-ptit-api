@@ -25,8 +25,8 @@
     "posttest": "npm run lint",
     "migrate": "node ./dist/migrate",
     "openapi-spec": "node ./dist/openapi-spec",
-    "dev": "npm run build:watch && npm start",
-    "start": "node -r source-map-support/register .",
+    "start:dev": "npm run build:watch && node -r source-map-support/register .",
+    "start": "node .",
     "clean": "lb-clean dist *.tsbuildinfo .eslintcache"
   },
   "repository": {
